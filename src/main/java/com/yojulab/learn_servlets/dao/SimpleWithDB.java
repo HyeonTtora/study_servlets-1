@@ -6,7 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SimpleWithDB {
-    public void getList(){
+
+    public void getList() {
         Commons commons = new Commons();
         Statement statement = commons.getStatement();
         Statement statementAnswer = commons.getStatement();
@@ -45,4 +46,5 @@ public class SimpleWithDB {
         }
 
     }
+
 }

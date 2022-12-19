@@ -5,22 +5,26 @@ import java.io.PrintWriter;
 
 import com.yojulab.learn_servlets.dao.SimpleWithDB;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns="/simple/WithDBServlets")
+@WebServlet(urlPatterns = "/simple/WithDBServlets")
 public class SimpleWithDBServlets extends HttpServlet {
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // biz with DB
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+
         SimpleWithDB simpleWithDB = new SimpleWithDB();
         simpleWithDB.getList();
-        // display
-        PrintWriter printWriter = response.getWriter();
-        printWriter.println("<div>SimpleWithDBServlets</div>");
-        printWriter.close();
+
+        PrintWriter pw = response.getWriter();
+        pw.println("<div>SimpleWithDBServlets</div>");
+        pw.close();
+
     }
+
 }
