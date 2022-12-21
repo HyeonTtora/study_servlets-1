@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SimpleWithDB {
-
     public ArrayList<HashMap> getList() {
         Commons commons = new Commons();
         Statement statement = commons.getStatement();
@@ -19,7 +18,6 @@ public class SimpleWithDB {
         ArrayList<HashMap> bundle_list = new ArrayList<>();
         try {
             ResultSet resultSet = statement.executeQuery(query);
-
             while (resultSet.next()) {
                 // 설문 문항에 맞는 설문 답항 출력
                 System.out.print(resultSet.getInt("ORDERS") + ". ");
@@ -27,8 +25,8 @@ public class SimpleWithDB {
                 String uid = resultSet.getString("QUESTIONS_UID");
                 HashMap<String, Object> question = new HashMap<String, Object>();
                 question.put("ORDERS", resultSet.getInt("ORDERS"));
-                question.put("QUESTIONS", resultSet.getInt("QUESTIONS"));
-                question.put("QUESTIONS_UID", resultSet.getInt("QUESTIONS_UID"));
+                question.put("QUESTIONS", resultSet.getString("QUESTIONS"));
+                question.put("QUESTIONS_UID", resultSet.getString("QUESTIONS_UID"));
 
                 // 설문자 답 받기
                 query = "SELECT example_list.EXAMPLE_UID, example_list.EXAMPLE, example_list.ORDERS " +
@@ -43,7 +41,6 @@ public class SimpleWithDB {
                     System.out.print(resultSetAnswer.getInt("ORDERS") + ". ");
                     System.out.println(resultSetAnswer.getString("EXAMPLE"));
                     HashMap<String, Object> answer = new HashMap<>();
-
                     answer.put("ORDERS", resultSetAnswer.getInt("ORDERS"));
                     answer.put("EXAMPLE", resultSetAnswer.getString("EXAMPLE"));
                     answer.put("EXAMPLE_UID", resultSetAnswer.getString("EXAMPLE_UID"));
@@ -53,8 +50,7 @@ public class SimpleWithDB {
                 resultSetAnswer.close();
                 HashMap<String, Object> bundle = new HashMap<>();
                 bundle.put("question", question);
-                bundle.put("answer_list", example_list);
-
+                bundle.put("example_list", example_list);
                 bundle_list.add(bundle);
             }
             statementAnswer.close();
@@ -65,5 +61,4 @@ public class SimpleWithDB {
         }
         return bundle_list;
     }
-
 }

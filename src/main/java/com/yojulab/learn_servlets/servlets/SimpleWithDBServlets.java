@@ -20,6 +20,7 @@ public class SimpleWithDBServlets extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
+        // bix with DB
         SimpleWithDB simpleWithDB = new SimpleWithDB();
         ArrayList<HashMap> bundleList = simpleWithDB.getList();
         for (int i = 0; i < bundleList.size(); i++) {
@@ -30,6 +31,8 @@ public class SimpleWithDBServlets extends HttpServlet {
             String questionsUid = (String) question.get("QUESTIONS_UID");
         }
 
+        // display
+                                                   
         PrintWriter pw = response.getWriter();
         pw.println("<div>SimpleWithDBServlets</div>");
         for (int i = 0; i < bundleList.size(); i++) {
