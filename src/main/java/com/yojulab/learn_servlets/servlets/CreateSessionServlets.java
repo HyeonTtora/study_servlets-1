@@ -28,13 +28,18 @@ public class CreateSessionServlets extends HttpServlet {
         // login
         if ("ttora".equals(username) && "1234".equals(password)) {
             HttpSession httpSession = request.getSession();
-            httpSession.setAttribute("username", httpSession);
-            httpSession.setAttribute("password", httpSession);
+            httpSession.setAttribute("username", username);
+            httpSession.setAttribute("password", password);
             printWriter.println("<div>" + username + "," + password + "</div>");
 
         } else {
             printWriter.println("<div>Faild</div>");
         }
         printWriter.close();
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req, resp);   
+   
     }
 }
