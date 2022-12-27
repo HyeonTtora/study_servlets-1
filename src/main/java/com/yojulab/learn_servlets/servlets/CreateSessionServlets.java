@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-// /session/createServlets?username=youlab&password=1234
+// /session/createServlets?username=yojulab&password=1234
 @WebServlet(urlPatterns = "/session/createServlets")
 public class CreateSessionServlets extends HttpServlet {
     @Override
@@ -24,22 +24,21 @@ public class CreateSessionServlets extends HttpServlet {
 
         // display
         PrintWriter printWriter = response.getWriter();
-        printWriter.println("<div>CreateSessionServlets</div>");
+        printWriter.println("<div>Create Session Servlets</div>");
         // login
-        if ("ttora".equals(username) && "1234".equals(password)) {
+        if ("yojulab".equals(username) && "1234".equals(password)) {
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("username", username);
             httpSession.setAttribute("password", password);
-            printWriter.println("<div>" + username + "," + password + "</div>");
-
+            printWriter.println("<div>" + username + ", " + password + "</div>");
         } else {
             printWriter.println("<div>Faild</div>");
         }
         printWriter.close();
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doGet(req, resp);   
-   
+        this.doGet(req, resp);
     }
 }
