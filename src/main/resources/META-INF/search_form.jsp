@@ -15,7 +15,7 @@
   </head>
 
   <body>
-  div>Check Login</div>
+  <div>Check Login</div>
     <div>username :<%= 
 session.getAttribute("username") %></div>
     <div><%= 
